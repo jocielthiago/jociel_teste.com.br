@@ -22,7 +22,22 @@
 <body>
    <div class="container" ng-controller="UsersController">
 
-    <p>Pesquisar: <input type="text" ng-model="filtros.search" ng-keyup="get();" ></p>
+    <div class="row">
+        <div col-md-4>
+            <p>Pesquisar: <input type="text" ng-model="filtros.search" ng-keyup="get();" ></p>
+        </div>
+
+        <div col-md-3>
+            <input type="radio" value="1" name="max_acess"  selected="selected" ng-click="set_acessos(false, false)"> Todos.
+        </div>
+        <div col-md-3>
+            <input type="radio" value="2" name="max_acess" ng-click="set_acessos(true, false)"> 10 com mais acessos.
+        </div>
+        <div col-md-3>
+            <input type="radio" value="3" name="max_acess" ng-click="set_acessos(false, true)"> 10 com menos acessos.
+        </div>
+    </div>
+
 
       <table class="table table-striped">
          <thead>

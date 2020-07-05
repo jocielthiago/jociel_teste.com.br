@@ -36,15 +36,30 @@ angular.module('App').controller('UsersController', function ($window, $scope, $
       $scope.filtros.order = $scope.filtros.order === 'asc' ? 'desc' : 'asc';
       $scope.get();
     };
-  }
-  $scope.paginas = []
+  };
+
+  $scope.paginas = [];
+
+  $scope.set_acessos = function($max = false, $min = false)
+  {
+    $scope.filtros.max_acess = $max;
+    $scope.filtros.min_acess = $min;
+    $scope.filtros.page = 1;
+    $scope.filtros.limit = 10;
+
+    $scope.get();
+  };
 
   $scope.paginacao = function($total)
   {
     $scope.paginas = [];
-    for (var i = 0; i < $total; i++) {
-      $scope.paginas[i] = parseInt(i)+1;
-    };
+    if($scope.filtros.max_acess == false && $scope.filtros.min_acess==false)
+    {
+      for (var i = 0; i < $total; i++) {
+        $scope.paginas[i] = parseInt(i)+1;
+      };
+
+    }
 
 
   };
