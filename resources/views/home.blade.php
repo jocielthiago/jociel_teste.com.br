@@ -41,21 +41,23 @@
             </tr>
          </tbody>
       </table>
-      <div>Paginação: 
-            <select ng-change="get()" ng-model="filtros.limit">
-                <option selected ng-value="10">10</option>
-                <option ng-value="20">20</option>
-                <option ng-value="30">30</option>
-                <option ng-value="40">40</option>
-            </select>
-    </div>
-    <div>
-        <ul class="pagination" role="navigation">
+      <div class="row">
+          <div class="col-md-2">Paginação: 
+                <select ng-change="get()" ng-model="filtros.limit">
+                    <option selected ng-value="10">10</option>
+                    <option ng-value="20">20</option>
+                    <option ng-value="30">30</option>
+                    <option ng-value="40">40</option>
+                </select>
+        </div>
+        <div class="col-md-8">
+            <ul class="pagination" role="navigation">
 
-            <li ng-repeat="pag in paginas" class="page-item" aria-current="page"><span class="page-link" ng-click="get_page(pag)" ng-class="{'active': filtros.page == parseInt(pag) } ">@{{pag}}</span></li>
-                    
-            </li>
-        </ul>
+                <li ng-repeat="pag in paginas" class="page-item" aria-current="page"><span class="page-link" ng-click="get_page(pag)" ng-class="{'active': filtros.page == parseInt(pag) } ">@{{pag}}</span></li>
+                        
+                </li>
+            </ul>
+        </div>
     </div>
    </div>
 </body>

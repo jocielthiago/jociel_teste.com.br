@@ -41,14 +41,16 @@ angular.module('App').controller('UsersController', function ($window, $scope, $
 
   $scope.paginacao = function($total)
   {
+    $scope.paginas = [];
     for (var i = 0; i < $total; i++) {
       $scope.paginas[i] = parseInt(i)+1;
     };
+
+
   };
 
   $scope.get_page = function($pag)
   {
-    console.log($pag);
     $scope.filtros.page = parseInt($pag);
     $scope.get();
   }
@@ -69,8 +71,9 @@ angular.module('App').controller('UsersController', function ($window, $scope, $
         if(response.status === true)
         {
           $scope.users = response.data;
-
-          $scope.paginacao(response.data.last_page);
+          $timeout(function(){
+            $scope.paginacao(response.data.last_page);
+          }, 0, true);
         };
 
       }, function( e )
