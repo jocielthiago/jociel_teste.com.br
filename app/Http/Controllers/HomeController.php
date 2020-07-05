@@ -13,4 +13,27 @@ class HomeController extends Controller
 
 	    return view('home', compact('users'));
 	}
+
+
+	public function get( Request $request )
+	{
+
+		$get = Users::where( function($q) use ( $request )
+      	{
+      		if($request->has('search'))
+      		{
+      			$q->where('name', 'like' ,  '%'.$request->get('search').'%');
+      		};
+
+      	});
+
+      	$get->orderBy('name',$request->get('order'));
+	
+
+	    return response()->json( array (
+	    	"status"=> true,
+	    	"data" => $get->paginate( $request->get('limit') )->toArray()
+	    	)
+	    , 200 );
+	}
 }
